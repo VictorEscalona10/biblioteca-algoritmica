@@ -10,10 +10,10 @@ Este proyecto es una aplicación de biblioteca virtual desarrollada con Flet. A 
 
 ## Configuracion del proyecto
 
-1. **Clonar el repositorio**: 
+1. **Clonar el repositorio**: crea una carpeta y ejecuta el siguiente comando
     ```bash
     git clone https://github.com/VictorEscalona10/biblioteca-algoritmica.git
-    cd tu-repositorio
+    cd biblioteca-algoritmica
 
 2. **Crea una rama propia**: Crea una nueva rama para trabajar en tus cambios. Reemplaza nombre-de-tu-rama con tu nombre:
 
