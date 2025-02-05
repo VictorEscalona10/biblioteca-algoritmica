@@ -40,6 +40,9 @@ Este proyecto es una aplicación de biblioteca virtual desarrollada con Flet. A 
 4. **Instalar dependencias**: debes instalar flet
     ```bash
     pip install flet
+    ```
+    ```bash
+    pip install
 
 5. **Ejecuta el proeycto**: puedes ejecutar el comando
     ```bash
