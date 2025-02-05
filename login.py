@@ -6,7 +6,7 @@ def login(page: ft.Page):
         print(user.value, password.value)
         page.go("/segunda")
 
-    title = ft.Text("Iniciar sesion", size=25, text_align=ft.TextAlign.CENTER, color=ft.colors.BLUE)
+    title = ft.Text("Iniciar sesion", size=26, text_align=ft.TextAlign.CENTER, color=ft.colors.BLUE)
     user = ft.TextField(label="Usuario", width=300)
     password = ft.TextField(label="Contraseña ", width=300)
     login = ft.ElevatedButton(
