@@ -1,10 +1,14 @@
 import flet as ft
+from backend.login import login as loginBackend
 
 def login(page: ft.Page):
 
     def click(e):
-        print(user.value, password.value)
-        page.go("/segunda")
+        if loginBackend(user.value, password.value):
+            page.go('/segunda')
+        
+        
+
 
     title = ft.Text("Iniciar sesion", size=25, text_align=ft.TextAlign.CENTER, color=ft.colors.BLUE)
     user = ft.TextField(label="Usuario", width=300)
