@@ -3,10 +3,10 @@ from login import login
 from app import app
 
 def main(page: ft.Page):
-    page.bgcolor = ft.colors.BLUE
+    page.bgcolor = '#0f1114'
     page.title = "Biblioteca"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
-    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER.END
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
 
     def route_change(e):
