@@ -31,11 +31,6 @@ Este proyecto es una aplicación de biblioteca virtual desarrollada con Flet. A 
     source venv/bin/activate
     ```
     
-2. **Crea una rama propia**: Crea una nueva rama para trabajar en tus cambios. Reemplaza nombre-de-tu-rama con tu nombre:
-
-    ```bash
-    git checkout -b nombre-de-tu-rama
-
 
 4. **Instalar dependencias**: debes instalar flet
     ```bash
@@ -43,6 +38,13 @@ Este proyecto es una aplicación de biblioteca virtual desarrollada con Flet. A 
     ```
     ```bash
     pip install
+    
+
+2. **Crea una rama propia**: Crea una nueva rama para trabajar en tus cambios. Reemplaza nombre-de-tu-rama con tu nombre:
+
+    ```bash
+    git checkout -b nombre-de-tu-rama
+    
 
 5. **Ejecuta el proeycto**: puedes ejecutar el comando
     ```bash
