@@ -15,6 +15,7 @@ def main(page: ft.Page):
             login(page)
         if page.route == "/segunda":
             page.clean()
+            
             app(page)
 
     page.on_route_change = route_change
