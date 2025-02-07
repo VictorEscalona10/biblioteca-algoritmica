@@ -1,7 +1,7 @@
 import flet as ft
 
 def app(page: ft.Page):
-    page.bgcolor = ft.colors.BLUE
+    page.bgcolor = '#0f1114'
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.vertical_alignment = ft.MainAxisAlignment.START
 

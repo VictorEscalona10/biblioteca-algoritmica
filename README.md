@@ -15,12 +15,7 @@ Este proyecto es una aplicación de biblioteca virtual desarrollada con Flet. A 
     git clone https://github.com/VictorEscalona10/biblioteca-algoritmica.git
     cd biblioteca-algoritmica
 
-2. **Crea una rama propia**: Crea una nueva rama para trabajar en tus cambios. Reemplaza nombre-de-tu-rama con tu nombre:
-
-    ```bash
-    git checkout -b nombre-de-tu-rama
-
-3. **Configurar el entorno virtual**: 
+2. **Configurar el entorno virtual**: 
     ```bash
     python -m venv venv
     ```
@@ -35,14 +30,21 @@ Este proyecto es una aplicación de biblioteca virtual desarrollada con Flet. A 
     ```bash
     source venv/bin/activate
     ```
-
+    
 
 4. **Instalar dependencias**: debes instalar flet
     ```bash
     pip install flet
     ```
     ```bash
-    pip install
+    pip install bcrypt
+    
+
+2. **Crea una rama propia**: Crea una nueva rama para trabajar en tus cambios. Reemplaza nombre-de-tu-rama con tu nombre:
+
+    ```bash
+    git checkout -b nombre-de-tu-rama
+    
 
 5. **Ejecuta el proeycto**: puedes ejecutar el comando
     ```bash
