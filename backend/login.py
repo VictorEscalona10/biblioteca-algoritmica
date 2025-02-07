@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import bcrypt
 
 def login(user, password):
     try:
@@ -7,9 +8,12 @@ def login(user, password):
         connect = sqlite3.connect(db_path)
         cursor = connect.cursor()
 
-        cursor.execute("SELECT * FROM users WHERE user = ? AND password = ?", (user, password))
+        password = str(password).encode('utf-8')  # Convierte la contraseña a bytes
+
+        cursor.execute("SELECT password FROM users WHERE user = ?", (user,))
         result = cursor.fetchone()
-        if result:
+        
+        if result and bcrypt.checkpw(password, result[0]):
             return True  # Usuario y contraseña correctos
         else:
             return False  # Usuario o contraseña incorrectos
@@ -19,7 +23,3 @@ def login(user, password):
     finally:
         cursor.close()
         connect.close()
-    
-    
-
-
