@@ -8,7 +8,6 @@ def main(page: ft.Page):
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
-
     def route_change(e):
         page.clean()
         if page.route == "/":

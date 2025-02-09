@@ -2,7 +2,6 @@ import sqlite3
 import os
 import bcrypt
 
-
 def login(user, password):
     try:
         db_path = os.path.join(os.path.dirname(__file__), 'database.db')
@@ -14,10 +13,16 @@ def login(user, password):
         cursor.execute("SELECT password FROM users WHERE user = ?", (user,))
         result = cursor.fetchone()
         
-        if result and bcrypt.checkpw(password, result[0]):
-            return True  # Usuario y contraseña correctos
+        if result:
+            # Convierte el hash almacenado (que es una cadena) de nuevo a bytes
+            hashed_password = result[0].encode('utf-8')
+            
+            if bcrypt.checkpw(password, hashed_password):
+                return True  # Usuario y contraseña correctos
+            else:
+                return False  # Contraseña incorrecta
         else:
-            return False  # Usuario o contraseña incorrectos
+            return False  # Usuario no encontrado
     except Exception as e:
         print(f"Error: {e}")
         return False
