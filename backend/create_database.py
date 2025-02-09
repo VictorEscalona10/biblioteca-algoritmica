@@ -30,6 +30,7 @@ def createDB():
                 title TEXT UNIQUE NOT NULL,
                 author TEXT NOT NULL,
                 link TEXT,
+                is_checked_out INTEGER CHECK(is_checked_out IN (0, 1)) DEFAULT 0,
                 added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
             )""")
         connect.commit()
