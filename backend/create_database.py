@@ -1,9 +1,3 @@
-'''
-ESTE ARCHIVO ESTA SOLO SI LA BASE DE DATOS NO ESTA EN SU REPOSITORIO LOCAL O EL ARCHIVO ESTA CORRUPTO.
-POR FAVOR NO DESPLEGAR ESTE ARCHIVO A PRODUCCION, SE SUBIRA A PRODUCCION LA BASE DE DATOS CON EL USUARIO
-ADMINISTRADOR YA REGISTRADO EN ELLA
-'''
-
 import sqlite3
 import os
 import bcrypt
@@ -20,7 +14,8 @@ def createDB():
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user TEXT UNIQUE NOT NULL,
-                password TEXT NOT NULL
+                password TEXT NOT NULL,
+                email TEXT UNIQUE NOT NULL
             )""")
         connect.commit()
 
@@ -30,8 +25,18 @@ def createDB():
                 title TEXT UNIQUE NOT NULL,
                 author TEXT NOT NULL,
                 link TEXT,
-                is_checked_out INTEGER CHECK(is_checked_out IN (0, 1)) DEFAULT 0,
+                category TEXT NOT NULL,
                 added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+            )""")
+        connect.commit()
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS user_books (
+                user_id INTEGER NOT NULL,
+                book_id INTEGER NOT NULL,
+                PRIMARY KEY (user_id, book_id),
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                FOREIGN KEY (book_id) REFERENCES books(id)
             )""")
         connect.commit()
 
@@ -39,8 +44,8 @@ def createDB():
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
         cursor.execute("""
-            INSERT INTO users (user, password)
-                VALUES ('admin', ?)
+            INSERT INTO users (user, password, email)
+                VALUES ('admin', ?, 'email@email.com')
             """, (hashed_password,))
         connect.commit()
 
