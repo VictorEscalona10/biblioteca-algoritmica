@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-def add_book(title, author, link = ''):
+def add_book(title, author, category, link = ''):
     try:
         db_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'database.db')
         connect = sqlite3.connect(db_path)
@@ -11,9 +11,9 @@ def add_book(title, author, link = ''):
             return False
 
         cursor.execute("""
-            INSERT INTO books (title, author, link)
-                VALUES (?, ?, ?)
-            """, (title, author, link))
+            INSERT INTO books (title, author, category, link)
+                VALUES (?, ?, ?, ?)
+            """, (title, author, category, link))
         
         connect.commit()
         return True
@@ -25,5 +25,5 @@ def add_book(title, author, link = ''):
         connect.close()
 
 # probar la funcion
-# add_book('El libro de mari', 'mari')
+add_book('El libro de mari', 'mari', 'aventura')
         
