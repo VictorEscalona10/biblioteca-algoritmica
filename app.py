@@ -9,9 +9,10 @@ def app(page: ft.Page):
     container_components_header = ft.Row([
         button_addBook
     ])
+    welcome = ft.Text(f'Bienvenido {page.user_authenticated}')
     header = ft.Container(content=ft.Row([container_components_header]), bgcolor='#ffffff')
 
-    page.add(header)
+    page.add(header, welcome)
     
 
 
