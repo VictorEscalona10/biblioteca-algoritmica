@@ -5,6 +5,7 @@ def login(page: ft.Page):
 
     def click(e):
         if loginBackend(user.value, password.value):
+            page.user_authenticated = user.value
             page.go('/segunda')
 
     title = ft.Text("Iniciar sesion", size=25, text_align=ft.TextAlign.CENTER, color='#000000')

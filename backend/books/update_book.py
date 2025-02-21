@@ -1,47 +1,49 @@
 import sqlite3
+from pydantic import ValidationError
+from typing import Optional
 import os
 
-def update_book(title, new_title=None, author=None, category=None, link=None):
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from models.book import Book
+
+# Conexión a la base de datos (ajusta la ruta según tu configuración)
+db_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'database.db')
+conn = sqlite3.connect(db_path)
+cursor = conn.cursor()
+
+def update_book(title: str, new_title: Optional[str] = None, new_author: Optional[str] = None, new_category: Optional[str] = None):
+    # 1. Obtener el libro existente
+    cursor.execute("SELECT title, author, category FROM books WHERE title = ?", (title,))
+    existing_book = cursor.fetchone()
+
+    if not existing_book:
+        raise ValueError("El libro no existe en la base de datos.")
+
+    # 2. Actualizar solo los campos proporcionados
+    updated_title = new_title if new_title is not None else existing_book[0]
+    updated_author = new_author if new_author is not None else existing_book[1]
+    updated_category = new_category if new_category is not None else existing_book[2]
+
+    # 3. Validar los datos con el modelo Pydantic
     try:
-        db_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'database.db')
-        connect = sqlite3.connect(db_path)
-        cursor = connect.cursor()
+        book = Book(title=updated_title, author=updated_author, category=updated_category)
+    except ValidationError as e:
+        raise ValueError(f"Datos inválidos: {e}")
 
-        # Validar que el título no esté vacío
-        if not title:
-            print("El título no puede estar vacío.")
-            return False
+    # 4. Ejecutar la actualización en la base de datos
+    cursor.execute("""
+        UPDATE books
+        SET title = ?, author = ?, category = ?
+        WHERE title = ?
+    """, (book.title, book.author, book.category, title))
 
-        # Obtener el registro actual del libro
-        cursor.execute("SELECT title, author, category, link FROM books WHERE title = ?", (title,))
-        current_book = cursor.fetchone()
-
-        if not current_book:
-            print("Libro no encontrado.")
-            return False
-
-        # Preparar los nuevos valores, manteniendo los actuales si no se proporciona un nuevo valor
-        updated_title = new_title if new_title is not None and new_title != '' else current_book[0]
-        updated_author = author if author is not None and author != '' else current_book[1]
-        updated_category = category if category is not None and category != '' else current_book[2]
-        updated_link = link if link is not None and link != '' else current_book[3]
-
-        # Actualizar el registro en la base de datos
-        cursor.execute("""
-            UPDATE books
-            SET title = ?, author = ?, category = ?, link = ?
-            WHERE title = ?
-        """, (updated_title, updated_author, updated_category, updated_link, title))
-
-        connect.commit()
-        print("Libro actualizado correctamente.")
-        return True
-    except Exception as e:
-        print(f"Error: {e}")
-        return False
-    finally:
-        cursor.close()
-        connect.close()
+    conn.commit()
+    print("Libro actualizado correctamente.")
 
 # Ejemplo de uso
-update_book('El libro de mari', new_title='El libro de Mari actualizado', author='Mari Sánchez')
+""" update_book(
+        title="El Principito",  # Título obligatorio (identificador único)
+        new_author="Antoine de Saint-Exupéry",  # Nuevo autor (opcional)
+        new_category="Literatura Infantil"  # Nueva categoría (opcional)
+    ) """

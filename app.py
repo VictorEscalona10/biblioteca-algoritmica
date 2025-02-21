@@ -1,19 +1,46 @@
 import flet as ft
 
+name = "NavigationRail Example"
+
 def app(page: ft.Page):
-    page.bgcolor = '#0f1114'
-    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-    page.vertical_alignment = ft.MainAxisAlignment.START
 
-    button_addBook = ft.ElevatedButton('Agregar Libro')
-    container_components_header = ft.Row([
-        button_addBook
-    ])
-    header = ft.Container(content=ft.Row([container_components_header]), bgcolor='#ffffff')
+    rail = ft.NavigationRail(
+        selected_index=0,
+        label_type=ft.NavigationRailLabelType.ALL,
+        min_width=100,
+        min_extended_width=400,
+        leading=ft.FloatingActionButton(icon=ft.Icons.CREATE, text="Add"),
+        group_alignment=-0.9,
+        destinations=[
+            ft.NavigationRailDestination(
+                icon=ft.Icons.FAVORITE_BORDER,
+                selected_icon=ft.Icons.FAVORITE,
+                label="First",
+            ),
+            ft.NavigationRailDestination(
+                icon=ft.Icon(ft.Icons.BOOKMARK_BORDER),
+                selected_icon=ft.Icon(ft.Icons.BOOKMARK),
+                label="Second",
+            ),
+            ft.NavigationRailDestination(
+                icon=ft.Icons.SETTINGS_OUTLINED,
+                selected_icon=ft.Icon(ft.Icons.SETTINGS),
+                label_content=ft.Text("Settings"),
+            ),
+        ],
+        on_change=lambda e: print("Selected destination:", e.control.selected_index),
+    )
 
-    page.add(header)
-    
+    page.add(ft.Row(
+        [
+            rail,
+            ft.VerticalDivider(width=1),
+            ft.Column(
+                [ft.Text("Body!")], alignment=ft.MainAxisAlignment.START, expand=True
+            ),
+        ],
+        alignment=ft.MainAxisAlignment.START,  # Asegura que la fila se alinee al inicio (izquierda)
+        width=400,
+        height=400,
+    ))
 
-
-
-    page.update()

@@ -3,6 +3,7 @@ import os
 import bcrypt
 
 def login(user, password):
+    
     try:
         db_path = os.path.join(os.path.dirname(__file__), 'database.db')
         connect = sqlite3.connect(db_path)
