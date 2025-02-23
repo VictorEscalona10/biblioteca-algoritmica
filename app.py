@@ -3,12 +3,12 @@ import flet as ft
 name = "NavigationRail Example"
 
 def app(page: ft.Page):
-
+    page.bgcolor='#1d2126'
     rail = ft.NavigationRail(
         selected_index=0,
         label_type=ft.NavigationRailLabelType.ALL,
-        min_width=100,
-        min_extended_width=400,
+        min_width=56,
+        min_extended_width=2160,
         leading=ft.FloatingActionButton(icon=ft.Icons.CREATE, text="Add"),
         group_alignment=-0.9,
         destinations=[
@@ -40,7 +40,8 @@ def app(page: ft.Page):
             ),
         ],
         alignment=ft.MainAxisAlignment.START,  # Asegura que la fila se alinee al inicio (izquierda)
-        width=400,
-        height=400,
+        width=3840, #With se basa en pixeles al ancho
+        height=2160, #height se basa en pixeles al alto
+        #Usé resolución 4k porque es la menos usada en el mercado, y así no tenemos problemas con la responsividad (Creo que es una mala solución)
     ))
-
+    page.update()
