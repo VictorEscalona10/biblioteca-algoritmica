@@ -35,3 +35,4 @@ class Book(BaseModel):
             raise ValueError("La categoria no debe tener caracteres especiales.")
         
         return value
+

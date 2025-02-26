@@ -1,61 +1,68 @@
 import flet as ft
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from backend.books.update_book import update_book as update_book_backend
-def main(page: ft.Page):
-    page.title = "Update Books"
 
-
-    def update_book(e):
-        new_title = title_input.value
-        new_author = author_input.value
-        new_category = category_input.value
+def update_book_page(page: ft.Page):
+    def update_book_function(e):
+        new_title = new_title_input.value
+        new_author = new_author_input.value
+        new_category = new_category_input.value
         link = link_input.value
-        update_books = update_book_backend(new_title, new_author, new_category, link)
-        print(update_books)
 
-    title_input = ft.TextField(label="New Title", width=450)
-    author_input = ft.TextField(label="New Author", width=450)
-    category_input = ft.TextField(label="New Category", width=450)
-    link_input = ft.TextField(label="New Link", width=450)
+        try:
+            # Llama a la función de backend para actualizar el libro
+            update_book_backend(
+                title=title.value,  # Asegúrate de que `title` esté definido
+                new_title=new_title,
+                new_author=new_author,
+                new_category=new_category,
+                link=link
+            )
+            # Muestra un mensaje de éxito
+            page.snack_bar = ft.SnackBar(ft.Text("Libro actualizado correctamente"), bgcolor="green")
+        except ValueError as e:
+            # Muestra un mensaje de error
+            page.snack_bar = ft.SnackBar(ft.Text(f"Error: {str(e)}"), bgcolor="red")
+        page.snack_bar.open = True
+        page.update()
+
+    # Título de la página
+    title = ft.Text("Actualizar libro", size=20, weight="bold")
+
+    # Campos de entrada
+    new_title_input = ft.TextField(label="Nuevo título", width=450)
+    new_author_input = ft.TextField(label="Nuevo autor", width=450)
+    new_category_input = ft.TextField(label="Nueva categoría", width=450)
+    link_input = ft.TextField(label="Link", width=450)
+
+    # Botón de actualización
     update_button = ft.ElevatedButton(
-        text="Update Book",
-        on_click=update_book,
-        color='#ffffff',
-        height=56,
+        text="Actualizar libro",
+        on_click=update_book_function,
+        bgcolor="#1d2126",
+        color="white",
         width=150,
-        style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=2)
-        ))
-    column = ft.Column (
-       
-        [
-            title_input,
-            author_input,
-            category_input,
+    )
+
+    # Columna que contiene los controles
+    column = ft.Column(
+        controls=[
+            title,
+            new_title_input,
+            new_author_input,
+            new_category_input,
             link_input,
             update_button,
         ],
-
-        alignment=ft.MainAxisAlignment.CENTER,  
-        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-        
+        alignment=ft.MainAxisAlignment.CENTER,  # Centrar verticalmente
+        horizontal_alignment=ft.CrossAxisAlignment.CENTER,  # Centrar horizontalmente
+        spacing=20,  # Espacio entre controles
     )
 
-    container = ft.Container (
+    # Contenedor principal
+    container = ft.Container(
         content=column,
-        bgcolor='#000000',
-        border_radius=10,
-        padding=50,
-        width=800,
-        height=505,
-    )
-    centered_container = ft.Container(
-        content=container,
-        alignment=ft.alignment.center,
-        expand=True,
+        padding=20,
+        alignment=ft.alignment.center,  # Centrar el contenido dentro del Container
+        expand=True,  # Asegurar que el Container se expanda
     )
 
-    page.add(centered_container)
-
-ft.app(target=main)
+    return container

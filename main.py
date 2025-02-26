@@ -1,6 +1,7 @@
 import flet as ft
 from login import login
-from app import app
+from app_admin import app as app_admin
+from app_user import app as app_user
 #pipeline
 def main(page: ft.Page):
     page.window_size = (1280, 720)
@@ -17,9 +18,12 @@ def main(page: ft.Page):
         if page.route == "/":
             login(page)
         if page.route == "/segunda":
-            if page.user_authenticated:
+            if page.user_authenticated == 'admin':
                 page.clean()
-                app(page)
+                app_admin(page)
+            elif page.user_authenticated != 'admin':
+                page.clean()
+                app_user(page)
             else:
                 page.clean()
                 login(page)

@@ -20,6 +20,10 @@ def add_book(title, author, category, link = ''):
 
         if title == '' or author == '':
             return False
+        
+        title = title.lower()
+        author = author.lower()
+        category = category.lower()
 
         cursor.execute("""
             INSERT INTO books (title, author, category, link)
