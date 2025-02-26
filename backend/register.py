@@ -24,6 +24,8 @@ def register_user(name, email, password, repeatPassword):
 
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
+        user.name = user.name.lower()
+        
         cursor.execute("""
             INSERT INTO users (user, password, email)
                 VALUES (?, ?, ?)
@@ -40,4 +42,4 @@ def register_user(name, email, password, repeatPassword):
     return "Usuario registrado con éxito"
 
 # Probar la función
-# print(register_user('victor', 'victor@gmail.com', 'Victor10#', 'Victor10#'))
+print(register_user('victor', 'victor@gmail.com', 'Victor10#', 'Victor10#'))
