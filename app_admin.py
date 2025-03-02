@@ -1,6 +1,7 @@
 import flet as ft
 from screens.add_book import add_book_page
 from screens.update_books import update_book_page
+from backend.books.get_books import get_books
 
 def app(page: ft.Page):
     page.bgcolor = '#1d2126'
@@ -53,8 +54,12 @@ def app(page: ft.Page):
     )
 
     # Columna para el body
+    books = get_books()
+
     body_column = ft.Column(
-        [ft.Text("Body!")],  # Contenido inicial
+        [
+            ft.Text(f"Libro: {book[1]}, Autor: {book[2]}") for book in books
+        ],  # Contenido inicial
         alignment=ft.MainAxisAlignment.START,
         expand=True,
     )
