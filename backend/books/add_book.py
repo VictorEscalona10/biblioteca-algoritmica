@@ -40,5 +40,5 @@ def add_book(title, author, category, link = ''):
         connect.close()
 
 # probar la funcion
-# add_book('El Principito', 'victor', "fantasia")
+add_book('El victor', 'victor', "peru")
         

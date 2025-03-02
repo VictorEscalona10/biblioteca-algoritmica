@@ -39,7 +39,10 @@ def register_user(name, email, password, repeatPassword):
         cursor.close()
         connect.close()
 
-    return "Usuario registrado con éxito"
+    return {
+            'status': True, 
+            'message': 'Usuario registrado correctamente'
+            } 
 
 # Probar la función
-print(register_user('victor', 'victor@gmail.com', 'Victor10#', 'Victor10#'))
+# print(register_user('samir', 'samir@gmail.com', 'Victor10#', 'Victor10#'))

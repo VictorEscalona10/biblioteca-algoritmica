@@ -1,7 +1,6 @@
 import flet as ft
-from screens.add_book import add_book_page
-from screens.update_books import update_book_page
 from screens.user_profile import user_profile_page
+from screens.add_book_user import add_book_user_page
 
 def app(page: ft.Page):
     page.bgcolor = '#1d2126'
@@ -14,15 +13,13 @@ def app(page: ft.Page):
 
         # Agrega el contenido correspondiente al índice seleccionado
         if e.control.selected_index == 0:
-            add_book_content = add_book_page(page)
-            body_column.controls.append(add_book_content)  # Añade el contenido al body
+            add_book_user_content = add_book_user_page(page)  # Obtiene el contenido de add_book_user_page
+            body_column.controls.append(add_book_user_content)  # Añade el contenido al body
         elif e.control.selected_index == 1:
-            update_book_content = update_book_page(page)
-            body_column.controls.append(update_book_content)
+            body_column.controls.append(ft.Text("Second!"))
         elif e.control.selected_index == 2:
             user_profile_content = user_profile_page(page)
             body_column.controls.append(user_profile_content)
-
 
         # Actualiza la página
         page.update()
@@ -39,22 +36,22 @@ def app(page: ft.Page):
         label_type=ft.NavigationRailLabelType.ALL,
         min_width=56,
         min_extended_width=2160,
-        leading=ft.FloatingActionButton(icon=ft.Icons.CREATE, text="Add", on_click=on_fab_click),  # Asigna la función de clic
+        leading=ft.FloatingActionButton(icon=ft.icons.CREATE, text="Add", on_click=on_fab_click),  # Asigna la función de clic
         group_alignment=-0.9,
         destinations=[
             ft.NavigationRailDestination(
-                icon=ft.Icons.ADD,
-                selected_icon=ft.Icons.ADD,
+                icon=ft.icons.ADD,
+                selected_icon=ft.icons.ADD,
                 label="Agregar libro",
             ),
             ft.NavigationRailDestination(
-                icon=ft.Icon(ft.Icons.BOOKMARK_BORDER),
-                selected_icon=ft.Icon(ft.Icons.BOOKMARK),
+                icon=ft.icons.BOOKMARK_BORDER,
+                selected_icon=ft.icons.BOOKMARK,
                 label="Second",
             ),
             ft.NavigationRailDestination(
-                icon=ft.Icons.SETTINGS_OUTLINED,
-                selected_icon=ft.Icon(ft.Icons.SETTINGS),
+                icon=ft.icons.SETTINGS_OUTLINED,
+                selected_icon=ft.icons.SETTINGS,
                 label_content=ft.Text("Settings"),
             ),
         ],
@@ -77,10 +74,7 @@ def app(page: ft.Page):
                 body_column,  # Usa la columna del body
             ],
             alignment=ft.MainAxisAlignment.START,
-            width=3840,
-            height=2160,
+            expand=True,  # Ocupa todo el espacio disponible
         )
     )
     page.update()
-
-

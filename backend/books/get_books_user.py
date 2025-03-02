@@ -17,4 +17,4 @@ def get_books_user(username):
         print(e)
         return "Error al obtener los libros"
     
-# print(get_books_user('victor'))
+print(get_books_user('victor'))
