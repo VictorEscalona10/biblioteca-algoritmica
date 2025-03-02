@@ -1,6 +1,7 @@
 import flet as ft
 from screens.add_book import add_book_page
 from screens.update_books import update_book_page
+from screens.user_profile import user_profile_page
 
 def app(page: ft.Page):
     page.bgcolor = '#1d2126'
@@ -19,10 +20,18 @@ def app(page: ft.Page):
             update_book_content = update_book_page(page)
             body_column.controls.append(update_book_content)
         elif e.control.selected_index == 2:
-            body_column.controls.append(ft.Text("Contenido de la Pantalla de Configuración"))
+            user_profile_content = user_profile_page(page)
+            body_column.controls.append(user_profile_content)
+
 
         # Actualiza la página
         page.update()
+
+    # Función para manejar el clic en el FloatingActionButton
+    def on_fab_click(e):
+        # Simula el cambio de destino seleccionando el primer destino
+        rail.selected_index = 0
+        on_navigation_change(ft.ControlEvent(control=rail))
 
     # NavigationRail
     rail = ft.NavigationRail(
@@ -30,7 +39,7 @@ def app(page: ft.Page):
         label_type=ft.NavigationRailLabelType.ALL,
         min_width=56,
         min_extended_width=2160,
-        leading=ft.FloatingActionButton(icon=ft.Icons.CREATE, text="Add"),
+        leading=ft.FloatingActionButton(icon=ft.Icons.CREATE, text="Add", on_click=on_fab_click),  # Asigna la función de clic
         group_alignment=-0.9,
         destinations=[
             ft.NavigationRailDestination(
@@ -73,3 +82,5 @@ def app(page: ft.Page):
         )
     )
     page.update()
+
+

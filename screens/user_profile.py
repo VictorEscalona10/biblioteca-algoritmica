@@ -4,7 +4,7 @@ def user_profile_page(page: ft.Page):
     # Botón para regresar a la página anterior
     back_button = ft.IconButton(
         icon=ft.icons.ARROW_BACK,
-        on_click=lambda e: print("Regresar a la página anterior"),  # Simular navegación
+        on_click=lambda e: page.go('/segunda'),  # Simular navegación
         tooltip="Regresar",
     )
 
@@ -21,7 +21,7 @@ def user_profile_page(page: ft.Page):
     book1_container = ft.Container(
         content=ft.Text("Book 1", size=18, color=ft.colors.WHITE),
         padding=20,
-        height=100,  # Altura del contenedor
+        height=150,  # Altura del contenedor
         border_radius=10,
         bgcolor=ft.colors.BLUE_700,  # Color más oscuro
         alignment=ft.alignment.center,
@@ -30,7 +30,7 @@ def user_profile_page(page: ft.Page):
     book2_container = ft.Container(
         content=ft.Text("Book 2", size=18, color=ft.colors.WHITE),
         padding=20,
-        height=100,  # Altura del contenedor
+        height=150,  # Altura del contenedor
         border_radius=10,
         bgcolor=ft.colors.GREEN_700,  # Color más oscuro
         alignment=ft.alignment.center,
@@ -80,6 +80,4 @@ def user_profile_page(page: ft.Page):
     )
 
     # Añadir el contenido a la página
-    page.add(stack)
-
-ft.app(target=user_profile_page)
+    return stack
