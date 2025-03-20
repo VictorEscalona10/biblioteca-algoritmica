@@ -24,7 +24,7 @@ def user_profile_page(page: ft.Page):
         height=150,  # Altura del contenedor
         border_radius=10,
         bgcolor=ft.colors.BLUE_700,  # Color más oscuro
-        alignment=ft.alignment.center,
+        alignment=ft.alignment.center,  
     )
 
     book2_container = ft.Container(

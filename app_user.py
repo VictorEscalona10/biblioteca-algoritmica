@@ -5,7 +5,6 @@ from screens.add_book_user import add_book_user_page
 def app(page: ft.Page):
     page.bgcolor = '#1d2126'
     page.title = "Biblioteca user"
-
     # Función para manejar el cambio de destino en el NavigationRail
     def on_navigation_change(e):
         # Limpia el contenido actual del body
@@ -13,6 +12,7 @@ def app(page: ft.Page):
 
         # Agrega el contenido correspondiente al índice seleccionado
         if e.control.selected_index == 0:
+            body_column.controls.append(body_column)
             add_book_user_content = add_book_user_page(page)  # Obtiene el contenido de add_book_user_page
             body_column.controls.append(add_book_user_content)  # Añade el contenido al body
         elif e.control.selected_index == 1:
@@ -36,7 +36,7 @@ def app(page: ft.Page):
         label_type=ft.NavigationRailLabelType.ALL,
         min_width=56,
         min_extended_width=2160,
-        leading=ft.FloatingActionButton(icon=ft.icons.CREATE, text="Add", on_click=on_fab_click),  # Asigna la función de clic
+        leading=ft.FloatingActionButton(icon=ft.icons.MENU, text="Home", on_click=on_fab_click),  # Asigna la función de clic
         group_alignment=-0.9,
         destinations=[
             ft.NavigationRailDestination(
@@ -47,13 +47,14 @@ def app(page: ft.Page):
             ft.NavigationRailDestination(
                 icon=ft.icons.BOOKMARK_BORDER,
                 selected_icon=ft.icons.BOOKMARK,
-                label="Second",
+                label="Bookmarks",
             ),
             ft.NavigationRailDestination(
-                icon=ft.icons.SETTINGS_OUTLINED,
-                selected_icon=ft.icons.SETTINGS,
-                label_content=ft.Text("Settings"),
+                icon=ft.icons.CONTACTS_OUTLINED,
+                selected_icon=ft.icons.CONTACTS,
+                label_content=ft.Text("Profile"),
             ),
+            
         ],
         on_change=on_navigation_change,  # Asigna la función de manejo de cambios
     )

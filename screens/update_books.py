@@ -53,16 +53,17 @@ def update_book_page(page: ft.Page):
             link_input,
             update_button,
         ],
-        alignment=ft.MainAxisAlignment.CENTER,  # Centrar verticalmente
+        alignment=ft.MainAxisAlignment.START,  # Alinear al inicio
         horizontal_alignment=ft.CrossAxisAlignment.CENTER,  # Centrar horizontalmente
         spacing=20,  # Espacio entre controles
+        scroll=ft.ScrollMode.AUTO,  # Habilitar scroll si es necesario
     )
 
     # Contenedor principal
     container = ft.Container(
         content=column,
         padding=20,
-        alignment=ft.alignment.center,  # Centrar el contenido dentro del Container
+        alignment=ft.alignment.top_center,  # Alinear el contenido en la parte superior
         expand=True,  # Asegurar que el Container se expanda
     )
 

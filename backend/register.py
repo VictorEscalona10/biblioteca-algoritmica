@@ -45,4 +45,4 @@ def register_user(name, email, password, repeatPassword):
             } 
 
 # Probar la función
-# print(register_user('samir', 'samir@gmail.com', 'Victor10#', 'Victor10#'))
+print(register_user('user', 'user@gmail.com', 'User1234#', 'User1234#'))
