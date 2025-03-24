@@ -1,6 +1,7 @@
 import flet as ft
 from screens.user_profile import user_profile_page
 from screens.add_book_user import add_book_user_page
+from screens.home import home
 
 def app(page: ft.Page):
     page.bgcolor = '#1d2126'
@@ -12,12 +13,14 @@ def app(page: ft.Page):
 
         # Agrega el contenido correspondiente al índice seleccionado
         if e.control.selected_index == 0:
+            body_column.controls.append(home(page))
+        elif e.control.selected_index == 1:
             body_column.controls.append(body_column)
             add_book_user_content = add_book_user_page(page)  # Obtiene el contenido de add_book_user_page
             body_column.controls.append(add_book_user_content)  # Añade el contenido al body
-        elif e.control.selected_index == 1:
-            body_column.controls.append(ft.Text("Second!"))
         elif e.control.selected_index == 2:
+            body_column.controls.append(ft.Text("Second!"))
+        elif e.control.selected_index == 3:
             user_profile_content = user_profile_page(page)
             body_column.controls.append(user_profile_content)
 
@@ -36,9 +39,13 @@ def app(page: ft.Page):
         label_type=ft.NavigationRailLabelType.ALL,
         min_width=56,
         min_extended_width=2160,
-        leading=ft.FloatingActionButton(icon=ft.icons.MENU, text="Home", on_click=on_fab_click),  # Asigna la función de clic
         group_alignment=-0.9,
         destinations=[
+            ft.NavigationRailDestination(
+                icon=ft.icons.HOME_OUTLINED,
+                selected_icon=ft.icons.HOME,
+                label="Home",
+            ),
             ft.NavigationRailDestination(
                 icon=ft.icons.ADD,
                 selected_icon=ft.icons.ADD,
@@ -54,14 +61,15 @@ def app(page: ft.Page):
                 selected_icon=ft.icons.CONTACTS,
                 label_content=ft.Text("Profile"),
             ),
-            
         ],
-        on_change=on_navigation_change,  # Asigna la función de manejo de cambios
+        on_change=on_navigation_change,
     )
 
     # Columna para el body
     body_column = ft.Column(
-        [ft.Text("Body!")],  # Contenido inicial
+        [
+            home(page)
+        ],  # Contenido inicial
         alignment=ft.MainAxisAlignment.START,
         expand=True,
     )
