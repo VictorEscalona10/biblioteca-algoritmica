@@ -7,14 +7,9 @@ def home(page: ft.Page):
 
     container = ft.Container(
         content=ft.Column([title, text]),
-        alignment=ft.alignment.center,
         expand=True,
         bgcolor=ft.colors.BLUE_700,
         border_radius=10,
     )
 
     return container
-
-    
-
-

@@ -3,6 +3,7 @@ from backend.books.update_book import update_book as update_book_backend
 
 def update_book_page(page: ft.Page):
     def update_book_function(e):
+        title = title_input.value
         new_title = new_title_input.value
         new_author = new_author_input.value
         new_category = new_category_input.value
@@ -11,7 +12,7 @@ def update_book_page(page: ft.Page):
         try:
             # Llama a la función de backend para actualizar el libro
             update_book_backend(
-                title=title.value,  # Asegúrate de que `title` esté definido
+                title=title.value,
                 new_title=new_title,
                 new_author=new_author,
                 new_category=new_category,
@@ -29,6 +30,7 @@ def update_book_page(page: ft.Page):
     title = ft.Text("Actualizar libro", size=20, weight="bold")
 
     # Campos de entrada
+    title_input = ft.TextField(label="Título del libro", width=450)
     new_title_input = ft.TextField(label="Nuevo título", width=450)
     new_author_input = ft.TextField(label="Nuevo autor", width=450)
     new_category_input = ft.TextField(label="Nueva categoría", width=450)
@@ -47,6 +49,7 @@ def update_book_page(page: ft.Page):
     column = ft.Column(
         controls=[
             title,
+            title_input,
             new_title_input,
             new_author_input,
             new_category_input,
