@@ -8,7 +8,7 @@ def add_book_page(page: ft.Page):
         category = category_input.value
         link = link_input.value
         result = add_book_backend(title, author, category, link)
-        print(result)
+        error.value = result
 
     title_container = ft.Text("Agregar Libro")
     error = ft.Text("", color=ft.colors.RED)
