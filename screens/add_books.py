@@ -55,12 +55,13 @@ def add_book_page(page: ft.Page):
     link_input = ft.TextField(label="Link", width=450)
 
     # Botón de actualización
-    update_button = ft.ElevatedButton(
+    add_button = ft.ElevatedButton(
         text="Agregar",
         on_click=add_book,
-        bgcolor="#1d2126",
+        bgcolor="black",
         color="white",
         width=150,
+        style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=5))
     )
 
     # Columna que contiene los controles
@@ -72,7 +73,7 @@ def add_book_page(page: ft.Page):
             author_input,
             category_input,
             link_input,
-            update_button,
+            add_button,
         ],
         alignment=ft.MainAxisAlignment.START,  # Alinear al inicio
         horizontal_alignment=ft.CrossAxisAlignment.CENTER,  # Centrar horizontalmente

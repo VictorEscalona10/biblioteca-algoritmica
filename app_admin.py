@@ -49,8 +49,8 @@ def app(page: ft.Page):
                 label="Agregar libro",
             ),
             ft.NavigationRailDestination(
-                icon=ft.Icon(ft.Icons.ACCESSIBLE),
-                selected_icon=ft.Icon(ft.Icons.ACCESSIBLE),
+                icon=ft.Icon(ft.Icons.BOOK_OUTLINED),
+                selected_icon=ft.Icon(ft.Icons.BOOK),
                 label="Actualizar libro",
             ),
             ft.NavigationRailDestination(

@@ -21,10 +21,7 @@ def login(page: ft.Page):
         width=300,
         bgcolor='#1d2126', 
         on_click=click, 
-        style=ft.ButtonStyle(
-            shape=ft.RoundedRectangleBorder(radius=0),
-            
-        )
+        style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=0))
     )
     text_register = ft.Row(
         [
