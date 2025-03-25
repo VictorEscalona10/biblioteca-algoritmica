@@ -1,8 +1,8 @@
 import flet as ft
-from backend.books.get_books import get_books
+from backend.books.get_books_user import get_books_user
 
-def user_profile_page(page: ft.Page):
-    books = get_books()
+def user_profile_page(page: ft.Page, user: str):
+    books = get_books_user(user)
 
     grid = ft.GridView(
         runs_count=5,  # Máximo 5 elementos por fila
@@ -21,15 +21,12 @@ def user_profile_page(page: ft.Page):
                         height=150,
                         bgcolor=ft.colors.GREY,
                     ),
-                    ft.Text(f"Libro: {book[1]}", size=16, weight="bold"),
-                    ft.Text(f"Autor: {book[2]}", size=14),
+                    ft.Text(f"Libro: {book['title']}", size=16, weight="bold"),
+                    ft.Text(f"Autor: {book['author']}", size=14),
                 ],
                 alignment=ft.MainAxisAlignment.CENTER,
                 spacing=5,
             )
         )
-        
-        
-        
 
     return grid

@@ -22,6 +22,7 @@ def add_book_to_user(username, title_book):
                 VALUES (?, ?)
             """, (user_id, book_id))
         connect.commit()
+        return "Libro agregado correctamente"
 
     except sqlite3.Error as e:
         print(f"Error al interactuar con la base de datos: {e}")
@@ -30,4 +31,4 @@ def add_book_to_user(username, title_book):
             connect.close()
 
 # Ejemplo de uso: Agregar el libro con ID 1 al usuario con ID 1
-# add_book_to_user('victor', 'El Principito')
+add_book_to_user('user', 'El Principito')
