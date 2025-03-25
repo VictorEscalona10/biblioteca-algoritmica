@@ -5,7 +5,7 @@ from screens.home import home
 
 def app(page: ft.Page):
     page.bgcolor = '#1d2126'
-    page.title = "Biblioteca user"
+    page.title = f"Biblioteca {page.user_authenticated}"
     # Función para manejar el cambio de destino en el NavigationRail
     def on_navigation_change(e):
         # Limpia el contenido actual del body
@@ -15,13 +15,10 @@ def app(page: ft.Page):
         if e.control.selected_index == 0:
             body_column.controls.append(home(page))
         elif e.control.selected_index == 1:
-            body_column.controls.append(body_column)
-            add_book_user_content = add_book_user_page(page)  # Obtiene el contenido de add_book_user_page
+            add_book_user_content = add_book_user_page(page, page.user_authenticated)  # Obtiene el contenido de add_book_user_page
             body_column.controls.append(add_book_user_content)  # Añade el contenido al body
         elif e.control.selected_index == 2:
-            body_column.controls.append(ft.Text("Second!"))
-        elif e.control.selected_index == 3:
-            user_profile_content = user_profile_page(page)
+            user_profile_content = user_profile_page(page, page.user_authenticated)
             body_column.controls.append(user_profile_content)
 
         # Actualiza la página
@@ -50,11 +47,6 @@ def app(page: ft.Page):
                 icon=ft.icons.ADD,
                 selected_icon=ft.icons.ADD,
                 label="Agregar libro",
-            ),
-            ft.NavigationRailDestination(
-                icon=ft.icons.BOOKMARK_BORDER,
-                selected_icon=ft.icons.BOOKMARK,
-                label="Bookmarks",
             ),
             ft.NavigationRailDestination(
                 icon=ft.icons.CONTACTS_OUTLINED,
