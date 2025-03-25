@@ -14,25 +14,28 @@ def add_book_user_page(page: ft.Page, user: str):
     title = ft.Text("Agregar Libro", size=20, color=ft.colors.WHITE)
     
     title_input = ft.TextField(label="Titulo del libro", color=ft.colors.WHITE)
-    button = ft.ElevatedButton("Agregar", on_click=click)
+
+    button = ft.ElevatedButton(text="Agregar", on_click=click, bgcolor="black", width=150,
+    style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=5))
+    )  
     error = ft.Text("",color=ft.colors.GREEN)
 
     column = ft.Column(
         [
             title,
-            error,
             title_input,
+            error,
             button
         ],
         alignment="center",  # Cambiado a cadena
-        spacing=20
+        spacing=10
+        
     )
 
     container = ft.Container(
         content=column,
         padding=20,
         border_radius=10,
-        bgcolor=ft.colors.BLUE_700,
         alignment=ft.alignment.center  # Cambiado a ft.alignment.center
     )
 
