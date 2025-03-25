@@ -14,12 +14,13 @@ def register_page(page: ft.Page):
             print(result.get('message'))
             page.go('/')
 
-    title = ft.Text("Registrarse")
-    username_input = ft.TextField(label="Nombre de usuario")
-    email_input = ft.TextField(label="Correo electrónico")
-    password_input = ft.TextField(label="Contraseña")
-    repeat_password_input = ft.TextField(label="Repetir contraseña")
-    button = ft.ElevatedButton("Registrarse", on_click=click)
+    title = ft.Text("Registrarse" , size=25, text_align=ft.TextAlign.CENTER, color='#000000')
+    username_input = ft.TextField(label="Nombre de usuario", width=300)
+    email_input = ft.TextField(label="Correo electrónico", width=300)
+    password_input = ft.TextField(label="Contraseña", width=300)
+    repeat_password_input = ft.TextField(label="Repetir contraseña", width=300)
+    button = ft.ElevatedButton("Registrarse", on_click=click, color='#ffffff', height=40, width=300, bgcolor='#1d2126', style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=0)))
+    
 
     column = ft.Column([
         title,
@@ -27,10 +28,20 @@ def register_page(page: ft.Page):
         email_input,
         password_input,
         repeat_password_input,
-        button
-    ])
+        button,
+    ],
+    alignment=ft.MainAxisAlignment.CENTER,
+    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+    )
 
-    container = ft.Container(content=column)
+    container = ft.Container(
+        content=column,
+        bgcolor='#ffffff',
+        padding=50,
+        border_radius=10,
+        width=500,
+
+        )
     page.add(container)
 
 

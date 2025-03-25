@@ -1,7 +1,8 @@
 import flet as ft
-from screens.add_book import add_book_page
+from screens.add_books import add_book_page
 from screens.update_books import update_book_page
 from screens.home_admin import home_admin
+from screens.delete_books import delete_books_page
 
 def app(page: ft.Page):
     page.bgcolor = '#1d2126'
@@ -23,6 +24,8 @@ def app(page: ft.Page):
         elif e.control.selected_index == 2:
             update_book_content = update_book_page(page)
             body_column.controls.append(update_book_content)
+        elif e.control.selected_index == 3:
+            body_column.controls.append(delete_books_page(page))
 
         # Actualiza la página
         page.update()
@@ -49,6 +52,11 @@ def app(page: ft.Page):
                 icon=ft.Icon(ft.Icons.ACCESSIBLE),
                 selected_icon=ft.Icon(ft.Icons.ACCESSIBLE),
                 label="Actualizar libro",
+            ),
+            ft.NavigationRailDestination(
+                icon=ft.Icons.DELETE,
+                selected_icon=ft.Icons.DELETE,
+                label="Eliminar libro",
             ),
         ],
         on_change=on_navigation_change,

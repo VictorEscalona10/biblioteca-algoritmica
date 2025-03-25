@@ -16,7 +16,5 @@ def home(page: ft.Page):
         bgcolor=ft.colors.BLUE_700,
         border_radius=10,
     )
-    
-    
 
     return container
