@@ -29,11 +29,12 @@ def update_book_page(page: ft.Page):
 
     # Botón de actualización
     update_button = ft.ElevatedButton(
-        text="Actualizar libro",
+        text="Actualizar",
         on_click=update_book_function,
-        bgcolor="#1d2126",
+        bgcolor="black",
         color="white",
         width=150,
+        style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=5))
     )
 
     # Columna que contiene los controles

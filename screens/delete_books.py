@@ -47,9 +47,10 @@ def delete_books_page(page: ft.Page):
     delete_button = ft.ElevatedButton(
         text="Eliminar",
         on_click=delete_books,
-        bgcolor="#1d2126",
+        bgcolor="black",
         color="white",
         width=150,
+        style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=5))
     )
 
     column = ft.Column(
