@@ -4,6 +4,7 @@ from pydantic import ValidationError
 
 def add_book_page(page: ft.Page):
     def add_book(e):
+        
         title = title_input.value
         author = author_input.value
         category = category_input.value
@@ -47,6 +48,7 @@ def add_book_page(page: ft.Page):
     title = ft.Text("Agregar libro", size=20, weight="bold")
 
     # Campos de entrada
+    error = ft.Text("", size=12, color="red")
     title_input = ft.TextField(label="Nuevo título", width=450)
     author_input = ft.TextField(label="Nuevo autor", width=450)
     category_input = ft.TextField(label="Nueva categoría", width=450)
@@ -65,6 +67,7 @@ def add_book_page(page: ft.Page):
     column = ft.Column(
         controls=[
             title,
+            error,
             title_input,
             author_input,
             category_input,

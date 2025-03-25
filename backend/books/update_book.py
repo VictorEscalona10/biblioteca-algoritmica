@@ -42,7 +42,7 @@ def update_book(title: str, new_title: Optional[str] = None, new_author: Optiona
 
     conn.commit()
     conn.close()
-    print("Libro actualizado correctamente.")
+    return "Libro actualizado correctamente."
 
 # Ejemplo de uso
 """ update_book(
